@@ -22,7 +22,7 @@ export default function ProductCard({ product }: ProductCardProps) {
       <div className="p-5">
         <h3 className="text-lg font-bold text-gray-500 text-center">{product.name}</h3>
         <p className="mt-5 text-sm font-black text-amber-500">
-          {formatCurrency(product.price)}ç
+          {formatCurrency(product.price)}
         </p>
         <AddProductButton
           product={product}
