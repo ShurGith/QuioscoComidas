@@ -7,6 +7,7 @@ import { formatCurrency } from "../../src/lib/utils/index";
 
 type ProductCardProps = {
   product: Product
+
 }
 
 export default function ProductCard({ product }: ProductCardProps) {

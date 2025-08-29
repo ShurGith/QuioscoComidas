@@ -1,4 +1,5 @@
 "use client"
+import ProductDetails from "@/components/order/ProductDetails";
 import { useStore } from "@/src/store";
 
 export default function OrderSumary() {
@@ -9,7 +10,12 @@ export default function OrderSumary() {
       {order.length === 0 ? (
         <p className="mt-5 text-gray-700">No hay productos en el pedido</p>
       ) : (
-        <p className="mt-5 text-gray-700">{JSON.stringify(order)}</p>
+        <div className="mt-5">
+          {order.map(item =>
+            <ProductDetails
+              key={item.id}
+              item={item} />
+          )}</div>
       )}
     </aside>
   )
