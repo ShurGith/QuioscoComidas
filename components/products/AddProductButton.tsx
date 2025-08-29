@@ -1,6 +1,6 @@
 "use client"
 
-import { MAX_ITEMS } from "@/app/datos/datosGenerales";
+import { MAX_ITEMS } from "@/src/lib/utils";
 import { useStore } from "@/src/store";
 import { Product } from "@prisma/client";
 

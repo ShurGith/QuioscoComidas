@@ -1,4 +1,5 @@
-import { MAX_ITEMS } from "@/app/datos/datosGenerales";
+
+import { MAX_ITEMS } from "@/src/lib/utils";
 import { OrderItem } from "@/src/types";
 import { Product } from "@prisma/client";
 import { create } from "zustand";

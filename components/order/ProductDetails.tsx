@@ -1,5 +1,5 @@
-import { MAX_ITEMS, MIN_ITEMS } from "@/app/datos/datosGenerales";
-import { formatCurrency } from "@/src/lib/utils";
+
+import { formatCurrency, MAX_ITEMS, MIN_ITEMS } from "@/src/lib/utils";
 import { useStore } from "@/src/store";
 import { OrderItem } from "@/src/types";
 import { MinusIcon, PlusIcon, XCircleIcon } from "@heroicons/react/16/solid";
