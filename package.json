@@ -4,17 +4,21 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build --turbopack",
+    "build": "next build",
     "start": "next start",
     "lint": "eslint"
   },
   "dependencies": {
     "@heroicons/react": "^2.2.0",
+    "@prisma/adapter-mariadb": "^6.15.0",
     "@prisma/client": "^6.15.0",
     "@prisma/extension-accelerate": "^2.0.2",
+    "colors": "^1.4.0",
     "next": "15.5.2",
     "react": "19.1.0",
     "react-dom": "19.1.0",
+    "react-toastify": "^11.0.5",
+    "zod": "^4.1.5",
     "zustand": "^5.0.8"
   },
   "prisma": {

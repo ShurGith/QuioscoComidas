@@ -1,11 +1,12 @@
 generator client {
   provider = "prisma-client-js"
-  output   = "./generated/prisma"
 }
 
 datasource db {
-  provider = "postgresql"
+//  provider = "mysql"
+provider = "postgresql"
   url      = env("DATABASE_URL")
+//shadowDatabaseUrl = env("SHADOW_DATABASE_URL")
 }
 
 model Category {
@@ -22,4 +23,24 @@ model Product {
   image       String?
   categoryId  Int
   category    Category @relation(fields: [categoryId], references: [id])
+  OrderItems OrderProducts[]
+}
+
+model Order {
+  id         Int     @id @default(autoincrement())
+  name       String
+  total      Float 
+  date       DateTime @default(now())
+  status     Boolean @default(false)
+  orderReadyAt DateTime?
+  orderProducts OrderProducts[]
+}
+
+model OrderProducts {
+  id           Int     @id @default(autoincrement())
+  orderId      Int
+  order        Order @relation(fields: [orderId], references: [id])
+  productId    Int
+  product      Product @relation(fields: [productId], references: [id])
+  quantity     Int
 }

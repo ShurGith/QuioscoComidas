@@ -10,13 +10,14 @@ interface Store {
   increaseQuantity: (id: Product['id']) => void;
   decreaseQuantity: (id: Product['id']) => void;
   removeProductFromOrder: (id: Product['id']) => void;
+  clearOrder: () => void;
 }
 
 export const useStore = create<Store>((set, get) => ({
   order: [],
   addToOrder(product) {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const { categoryId, image, description, ...data } = product
+    const { categoryId, image, ...data } = product
     let order: OrderItem[] = []
 
     if (get().order.find((item) => item.id === product.id)) {
@@ -64,7 +65,11 @@ export const useStore = create<Store>((set, get) => ({
     set(() => ({
       order: get().order.filter(item => item.id !== id)
     }))
+  },
+
+  clearOrder: () => {
+    set(() => ({
+      order: []
+    }))
   }
-
-
 }))
