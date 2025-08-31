@@ -1,7 +1,6 @@
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
-[![Preview](./public/db-schema.svg)](./public/db-schema.svg)
-<img src="/public/db-schema.svg" width="500">
+<img src="/public/db-schema.svg">
 
 ## Getting Started
 
