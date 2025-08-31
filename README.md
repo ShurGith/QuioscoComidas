@@ -1,7 +1,6 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+<img src="/public/quioskoComidas.png">
 
-[![Preview](./public/db-schema.svg)](./public/db-schema.svg)
-
+<img src="/public/db-schema.svg" width="100%">
 
 ## Getting Started
 
