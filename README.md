@@ -1,6 +1,7 @@
-<img src="/public/quioskoComidas.png">
+<img src="./public/quioskoComidas.png">
 
-<img src="/public/db-schema.svg" width="100%">
+## Base de datos para el proyecto en  [Neon](https://neon.com)
+<img src="./public/db-schema.svg">
 
 ## Getting Started
 
