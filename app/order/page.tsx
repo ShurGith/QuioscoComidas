@@ -1,6 +1,6 @@
 
-export default function OrderPage() {
+export default function page() {
   return (
-    <div>OrderPage</div>
+    <div>page</div>
   )
 }

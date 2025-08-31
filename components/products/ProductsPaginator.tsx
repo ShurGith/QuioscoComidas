@@ -18,7 +18,8 @@ export default function ProductsPaginator({ page, totalPages }: ProductsPaginato
         >&laquo;</Link>
       )}
       {pages.map((currentPage) => (
-        <Link key={currentPage} className={`${claseLinks} ${page === currentPage ? ' pointer-events-none bg-gray-300' : 'bg-white'}`}
+        <Link key={currentPage}
+          className={`${claseLinks} ${page === currentPage ? ' pointer-events-none bg-gray-300' : 'bg-white'}`}
           href={`/admin/products?page=${currentPage}`}>
           {currentPage}
         </Link>

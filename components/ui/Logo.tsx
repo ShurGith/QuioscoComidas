@@ -9,7 +9,9 @@ export default function Logo() {
           <Image
             src="/logo.svg"
             alt="Logo"
-            fill
+            width={160}
+            height={160}
+            priority
           />
         </Link>
       </div>
