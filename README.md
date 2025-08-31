@@ -1,4 +1,4 @@
-<img src="quioskoComidas.png">
+<img src="/public/quioskoComidas.png">
 
 <img src="/public/db-schema.svg" width="100%">
 
