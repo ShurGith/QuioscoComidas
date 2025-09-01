@@ -7,7 +7,17 @@ export function formatCurrency(cantidad: number): string {
   );
 }
 
+export function getImagePath(imagePath: string | null) {
+  const cloudinaryBaseUrl = "https://res.cloudinary.com/"
+  if (imagePath?.startsWith(cloudinaryBaseUrl)) {
+    return imagePath;
+  } else {
+    return `/products/${imagePath}.jpg`;
+  }
+
+}
 
 export const MIN_ITEMS = 1;
 export const MAX_ITEMS = 9;
 
+export const RELOAD_DELAY = 600 * 1000; 

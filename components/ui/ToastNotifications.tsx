@@ -6,6 +6,8 @@ import "react-toastify/dist/ReactToastify.css";
 
 export default function ToastNotifications() {
   return (
-    <ToastContainer />
+    <ToastContainer
+      autoClose={2000}
+    />
   )
 }

@@ -1,9 +1,9 @@
+import LinkAmber from "@/components/LinkAmber";
 import ProductSearchForm from "@/components/products/ProductSearchForm";
 import ProductsPaginator from "@/components/products/ProductsPaginator";
 import ProductTable from "@/components/products/ProductsTable";
 import Heading from "@/components/ui/Heading";
 import { prisma } from "@/src/lib/prisma";
-import Link from "next/link";
 import { redirect } from "next/navigation";
 
 async function productsCount() {
@@ -43,11 +43,8 @@ export default async function ProductsPage({ searchParams }: { searchParams: { p
     <>
       <Heading>Administrar Productos</Heading>
       <div className="flex flex-col gap-5 lg:gap-3 lg:flex-row justify-center items-center lg:max-w-3xl">
-        <Link
-          href="/admin/products/new"
-          className="min-w-fit bg-amber-400 px-10 py-3 w-full lg:w-auto text-xl text-center font-bold rounded-md hover:bg-amber-500 transition-colors"
-        >
-          Crear Producto</Link>
+
+        <LinkAmber texto='Crear Producto' enlace='/admin/products/new' />
         <ProductSearchForm />
       </div>
       <ProductTable
