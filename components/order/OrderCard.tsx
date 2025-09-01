@@ -1,13 +1,12 @@
 import { completeOrder } from "@/actions/complete-order-action";
 import { formatCurrency } from "@/src/lib/utils";
 import { OrderWithProducts } from "@/src/types";
-import { bgYellow } from "colors";
 
 type OrderCardProps = {
   order: OrderWithProducts;
 }
 export default function OrderCard({ order }: OrderCardProps) {
-  console.log(bgYellow("!!! ESTO VIENE SERVIDOR ¡¡¡".blue));
+  //console.log(bgYellow("!!! ESTO VIENE SERVIDOR ¡¡¡".blue));
 
 
   return (

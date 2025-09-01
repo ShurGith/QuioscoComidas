@@ -20,3 +20,4 @@ export function getImagePath(imagePath: string | null) {
 export const MIN_ITEMS = 1;
 export const MAX_ITEMS = 9;
 
+export const RELOAD_DELAY = 600 * 1000; 
