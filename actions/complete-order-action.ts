@@ -1,11 +1,11 @@
 "use server"
 import { prisma } from "@/src/lib/prisma";
-import { bgGreen, bgRed } from "colors";
+import { bgRed } from "colors";
 import { revalidatePath } from "next/cache";
 
 export async function completeOrder(formData: FormData) {
   //console.log(formData.get("order_id"));
-  console.log(bgGreen("!!! ESTO VIENE DEL CLIENTE ¡¡¡¡".white));
+  //  console.log(bgGreen("!!! ESTO VIENE DEL CLIENTE ¡¡¡¡".white));
   const orderId = formData.get("order_id");
   try {
     await prisma.order.update({

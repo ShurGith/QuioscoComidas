@@ -14,15 +14,9 @@ export default function ImageUpload({ image }: { image: string | null | undefine
   const [hasNewInPath, setHasNewInPath] = useState(false);
 
   useEffect(() => {
-    // pathname contendrá la ruta actual de la URL, por ejemplo:
-    // '/productos/new'
-    // '/blog/articulos/nuevo-post'
-    // '/admin'
-
     setHasNewInPath(pathname ? pathname.includes("new") : false);
+  }, []);
 
-  }, [pathname]);
-  console.log(hasNewInPath);
   return (
     <CldUploadWidget
       uploadPreset="QuioscoCocina"
