@@ -4,18 +4,25 @@ import { getImagePath } from "@/src/lib/utils";
 import { Icon } from "@iconify/react";
 import { CldUploadWidget } from "next-cloudinary";
 import Image from "next/image";
-import { useState } from "react";
+import { usePathname } from "next/navigation";
+import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 
 export default function ImageUpload({ image }: { image: string | null | undefined }) {
   const [imageUrl, setImageUrl] = useState('')
-  if (typeof window !== "undefined") {
-    const url = window.location.href;
+  const pathname = usePathname();
+  const [hasNewInPath, setHasNewInPath] = useState(false);
 
+  useEffect(() => {
+    // pathname contendrá la ruta actual de la URL, por ejemplo:
+    // '/productos/new'
+    // '/blog/articulos/nuevo-post'
+    // '/admin'
 
-    const matchNew = url.includes("/new");
-  }
+    setHasNewInPath(pathname ? pathname.includes("new") : false);
 
+  }, [pathname]);
+  console.log(hasNewInPath);
   return (
     <CldUploadWidget
       uploadPreset="QuioscoCocina"
@@ -40,9 +47,9 @@ export default function ImageUpload({ image }: { image: string | null | undefine
               className="relative h-60 cursor-pointer hover:opacity-70 transition duration-300 flex flex-col rounded-md p-5 justify-center items-center gap-4 text-neutral-600 bg-slate-100"
             >
               <Icon icon="sidekickicons:photo-plus" width="50" height="50" />
-              {/* {!imageUrl &&
-                <p className="text-lg font-bold">{matchNew ? 'Subir imagen' : 'Cambiar imagen'}</p>
-              } */}
+              {!imageUrl &&
+                <p className="text-lg font-bold">{hasNewInPath ? 'Subir imagen' : 'Cambiar imagen'}</p>
+              }
               {imageUrl && (
                 <div className="absolute inset-0 w-full h-full">
                   <Image
