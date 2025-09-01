@@ -29,7 +29,7 @@ export default function OrderSumary() {
         toast.error(error.message)
       )
     }
-    toast.success("Peido creado con éxito!")
+    toast.success("Pedido creado con éxito!")
     clearOrder()
   }
 
