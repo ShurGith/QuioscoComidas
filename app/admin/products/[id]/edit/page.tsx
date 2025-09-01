@@ -17,7 +17,13 @@ async function getProductById(id: number) {
   return product;
 }
 
-export default async function EditProductPage({ params }: { params: { id: string } }) {
+type ProducFormProps = {
+  params: {
+    id: string | number; // If 'id' could be a number
+    // id?: string; // If 'id' is optional
+  };
+}
+export default async function EditProductPage({ params }: ProducFormProps) {
   const product = await getProductById(Number(params.id))
 
 
