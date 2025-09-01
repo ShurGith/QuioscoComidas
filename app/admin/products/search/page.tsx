@@ -16,13 +16,14 @@ async function searchedProducts(searchTerm: string) {
   })
   return products;
 }
-export default async function SearchPage({ searchParams }: { searchParams: { search: string } }) {
-  const products = await searchedProducts(searchParams.search);
+export default async function SearchPage({ searchParams }: { searchParams: Promise<{ search: string }> }) {
+  const { search } = await searchParams;
+  const products = await searchedProducts(search);
 
   return (
     <>
       <Heading >
-        Resultados de la Búsqueda de: <b> {searchParams.search.toUpperCase()}</b>
+        Resultados de la Búsqueda de: <b> {search.toUpperCase()}</b>
         &nbsp; ({products.length})
       </Heading>
       <hr className="text-slate-300 w-full border-b-2 border-dashed" />

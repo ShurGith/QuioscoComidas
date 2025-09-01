@@ -9,8 +9,6 @@ import { redirect } from "next/navigation";
 async function productsCount() {
   return await prisma.product.count();
 }
-
-
 async function getProducts(page: number, pageSize: number) {
 
   const skip = (page - 1) * pageSize;
@@ -25,11 +23,12 @@ async function getProducts(page: number, pageSize: number) {
   );
 }
 
+export type ProductsCount = Awaited<ReturnType<typeof productsCount>>;
 export type ProductsWithCategory = Awaited<ReturnType<typeof getProducts>>
 
-export default async function ProductsPage({ searchParams }: { searchParams: { page: string } }) {
-  const page = +searchParams.page || 1;
-
+export default async function ProductsPage({ searchParams }: { searchParams: Promise<{ page: string }> }) {
+  const { page: pageParam } = await searchParams
+  const page = + pageParam || 1
   if (page < 1) redirect('/admin/products');
 
   const pageSize = Number(process.env.PAGE_SIZE) || 25;
