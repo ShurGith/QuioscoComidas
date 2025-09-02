@@ -6,7 +6,7 @@ datasource db {
 //  provider = "mysql"
 provider = "postgresql"
   url      = env("DATABASE_URL")
-  directUrl = env("DIRECT_URL")
+//  directUrl = env("DIRECT_URL")
 //shadowDatabaseUrl = env("SHADOW_DATABASE_URL")
 }
 
@@ -40,8 +40,10 @@ model Order {
 model OrderProducts {
   id           Int     @id @default(autoincrement())
   orderId      Int
-  order        Order @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  //order        Order @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  order        Order @relation(fields: [orderId], references: [id])
   productId    Int
-  product      Product @relation(fields: [productId], references: [id], onDelete: Cascade)
+//  product      Product @relation(fields: [productId], references: [id], onDelete: Cascade)
+  product      Product @relation(fields: [productId], references: [id])
   quantity     Int
 }

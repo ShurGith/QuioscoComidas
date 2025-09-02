@@ -27,8 +27,9 @@ export function DeleteProductButton({ product }: DeleteProductButtonProps) {
       } else {
         toast.error('El producto no se pudo eliminar o no existía.');
       }
-    } catch (error) {
-      toast.error(`Error al intentar eliminar el producto: ${error}`);
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    } catch (error: any) {
+      toast.error(`Error al intentar eliminar el producto: ${error.message || 'Error desconocido'}`);
     }
   };
   return (

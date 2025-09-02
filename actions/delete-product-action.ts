@@ -1,24 +1,23 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use server"
 import { prisma } from "@/src/lib/prisma";
-import { PrismaClientKnownRequestError } from "@prisma/client/runtime/library";
+import { revalidatePath } from "next/cache";
 
-export async function DeleteProductAction(id: number) {
+export async function DeleteProductAction(productId: number) {
   try {
-    const deletedProduct = await prisma.product.delete({
-      where: {
-        id: id,
-      }
+    const orderCount = await prisma.orderProducts.count({
+      where: { productId: productId },
     });
-    console.info("Producto eliminado exitosamente")
-    console.dir(deletedProduct, { depth: null });
-    return true;
-
-  } catch (error) {
-    console.error(`Error al eliminar el producto con ID ${id}`);
-    if (error instanceof PrismaClientKnownRequestError && error.code === "P2025") {
-      throw new Error('El producto no existe');
-    } else {
-      throw new Error('Ocurrió un error inesperado');
+    if (orderCount > 0) {
+      throw new Error('Este producto no se puede eliminar porque ya forma parte de pedidos existentes.');
     }
+    const deletedProduct = await prisma.product.delete({
+      where: { id: productId },
+    });
+    revalidatePath('/products');
+    return deletedProduct;
+  } catch (error: any) {
+    console.error('Error al eliminar el producto:', error);
+    throw new Error(error.message || 'Ocurrió un error inesperado.');
   }
 }
