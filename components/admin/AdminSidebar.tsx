@@ -9,10 +9,8 @@ const adminNavigation = [
 ]
 
 export default function AdminSidebar() {
-
   return (
     <>
-
       <div className="space-y-3 ">
         <Logo />
         <nav className="flex flex-col">
@@ -21,11 +19,9 @@ export default function AdminSidebar() {
               key={link.url}
               link={link}
             />
-
           ))}
         </nav>
       </div>
     </>
-
   )
 }

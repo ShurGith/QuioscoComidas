@@ -15,22 +15,20 @@ export function DeleteProductButton({ product }: DeleteProductButtonProps) {
 
   const handleDeleteProduct = async (productId: number, productName: string) => {
     if (!confirm(`¿Estás seguro de que quieres eliminar el producto "${productName}"?`)) {
-      return; // El usuario canceló la eliminación
+      return;
     }
 
     try {
-      // Llamas a tu Server Action (o a tu API endpoint)
       const deletedProduct = await DeleteProductAction(productId);
 
       if (deletedProduct) {
         toast.success('Producto eliminado con éxito:' + productName);
-        // Actualiza la UI forzando refresh del router (los datos se revalidan en el server action)
         router.refresh();
       } else {
         toast.error('El producto no se pudo eliminar o no existía.');
       }
     } catch (error) {
-      toast.error('Error al intentar eliminar el producto:');
+      toast.error(`Error al intentar eliminar el producto: ${error}`);
     }
   };
   return (
