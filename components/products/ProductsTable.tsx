@@ -1,15 +1,11 @@
 import { ProductsWithCategory } from "@/app/admin/products/page";
-import { DeleteProductButton } from "@/components/products/DeleteProductButton";
+import DeleteProductButton from "@/components/products/DeleteProductButton";
 import { formatCurrency } from "@/src/lib/utils";
 import { Icon } from "@iconify/react";
 //import { Category, Product } from "@prisma/client";
 import Link from "next/link";
 
 type ProductTableProps = {
-  //products: Product[];
-  /*   products: ({
-      category: Category
-    } & Product)[] */
   products: ProductsWithCategory
 };
 
@@ -60,7 +56,9 @@ export default function ProductTable({ products }: ProductTableProps) {
                       <Link href={`/admin/products/${product.id}/edit`} className="text-indigo-600 hover:text-indigo-900">
                         <Icon icon="iconoir:page-edit" width="30" height="30" />
                         <span className="sr-only">, {product.name}</span></Link>
-                      <DeleteProductButton key={product.id} product={product} />
+                      <DeleteProductButton key={product.id}
+                        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                        product={product as any} />
                     </td>
                   </tr>
                 ))}

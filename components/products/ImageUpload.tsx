@@ -15,7 +15,7 @@ export default function ImageUpload({ image }: { image: string | null | undefine
 
   useEffect(() => {
     setHasNewInPath(pathname ? pathname.includes("new") : false);
-  }, []);
+  }, [pathname]);
 
   return (
     <CldUploadWidget
