@@ -1,10 +1,8 @@
-import { SpeedInsights } from "@vercel/speed-insights/next";
 import Image from "next/image";
 import Link from "next/link";
 export default function Home() {
   return (
     <div className="font-sans flex flex-col items-center  min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <SpeedInsights />
       <Image src="/logo.svg" alt="Logo" width={400} height={100} />
       <h1 className="text-5xl font-bold">My App de Restaurante</h1>
       <div className="flex gap-4">
