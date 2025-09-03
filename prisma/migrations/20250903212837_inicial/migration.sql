@@ -12,7 +12,9 @@ CREATE TABLE "public"."Product" (
     "id" SERIAL NOT NULL,
     "name" TEXT NOT NULL,
     "price" DOUBLE PRECISION NOT NULL,
-    "image" TEXT,
+    "image" TEXT NOT NULL,
+    "description" TEXT,
+    "available" BOOLEAN NOT NULL DEFAULT false,
     "categoryId" INTEGER NOT NULL,
 
     CONSTRAINT "Product_pkey" PRIMARY KEY ("id")

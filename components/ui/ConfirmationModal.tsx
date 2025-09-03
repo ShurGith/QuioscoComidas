@@ -1,5 +1,5 @@
 import { getImagePath } from '@/src/lib/utils';
-import { Product } from '@prisma/client';
+import { ProductToDelete } from '@/src/types';
 import Image from 'next/image';
 import React, { useEffect, useState } from 'react';
 
@@ -7,7 +7,7 @@ interface ConfirmationModalProps {
   isOpen: boolean;
   onClose: () => void;
   onConfirm: () => void;
-  product: Product
+  product: ProductToDelete
 }
 
 export const ConfirmationModal: React.FC<ConfirmationModalProps> = ({
@@ -19,7 +19,6 @@ export const ConfirmationModal: React.FC<ConfirmationModalProps> = ({
   //& Estado interno para controlar la animación del modal y su contenido
   const [shouldRender, setShouldRender] = useState(false); // Controla si el modal está en el DOM
   const [showContent, setShowContent] = useState(false);   // Controla las transiciones del contenido
-
 
   useEffect(() => {
     let openTimer: NodeJS.Timeout;

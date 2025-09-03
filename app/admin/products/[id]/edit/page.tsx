@@ -4,13 +4,17 @@ import EditProductForm from "@/components/products/EditProductForm";
 import ProductForm from "@/components/products/ProductForm";
 import Heading from "@/components/ui/Heading";
 import { prisma } from "@/src/lib/prisma";
+import { Product } from "@prisma/client";
 import { notFound } from "next/navigation";
 
-async function getProductById(id: number) {
+async function getProductById(id: Product["id"]) {
   const product = await prisma.product.findUnique({
     where: {
       id,
     },
+    include: {
+      category: true
+    }
   })
   if (!product)
     notFound();
@@ -21,12 +25,10 @@ export default async function EditProductsPage({ params }: { params: Promise<{ i
   const product = await getProductById(+(await params).id)
   return (
     <>
-      <Heading>Editar el producto {product?.name} </Heading>
+      <Heading>Editar el producto {product.name} </Heading>
       <GoBackButton />
       <EditProductForm>
-        <ProductForm
-          product={product}
-        />
+        <ProductForm product={product} />
       </EditProductForm>
 
     </>

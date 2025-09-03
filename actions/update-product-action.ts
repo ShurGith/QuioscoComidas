@@ -6,7 +6,9 @@ import { revalidatePath } from "next/cache"
 
 export async function updateProductAction(data: unknown, id: number) {
   const result = await ProductSchema.safeParseAsync(data)
+
   if (!result.success) {
+    console.error("Error de validación de Zod:", result.error.issues); // <--- Necesito la salida de esto
     return {
       errors: result.error.issues
     }

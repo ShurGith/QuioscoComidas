@@ -50,7 +50,7 @@ export default function ProductTable({ products }: ProductTableProps) {
                       </Link>
                     </td>
                     <td className="flex items-center justify-center gap-4 py-4">
-                      <Link href={`/order/${product.category.slug}`}>
+                      <Link href={`/admin/products/${product.id}/view`}>
                         <Icon icon="emojione:eye" width="30" height="30" />
                       </Link>
                       <Link href={`/admin/products/${product.id}/edit`} className="text-indigo-600 hover:text-indigo-900">
