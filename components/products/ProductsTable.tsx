@@ -1,16 +1,30 @@
+"use client"
 import { ProductsWithCategory } from "@/app/admin/products/page";
+import AvailabilityToggle from "@/components/products/AvailabilityToggle";
 import DeleteProductButton from "@/components/products/DeleteProductButton";
+import Bulb from "@/components/ui/Bulb";
 import { formatCurrency } from "@/src/lib/utils";
 import { Icon } from "@iconify/react";
-//import { Category, Product } from "@prisma/client";
 import Link from "next/link";
 
 type ProductTableProps = {
   products: ProductsWithCategory
 };
+const handleClick = (e: React.MouseEvent<HTMLDivElement>) => {
+  // Buscar el checkbox más cercano dentro de la misma celda <td>
+  const checkbox = e.currentTarget
+    .closest("td")
+    ?.querySelector<HTMLInputElement>("input[type='checkbox']");
+
+  if (checkbox) {
+    checkbox.click(); // Simula el click en el checkbox
+    console.log("Checkbox toggled:", checkbox.checked);
+  } else {
+    console.log("No se encontró ningún checkbox cercano");
+  }
+};
 
 export default function ProductTable({ products }: ProductTableProps) {
-
 
   return (
     <div className="px-4 sm:px-6 lg:px-8 mt-4">
@@ -26,10 +40,13 @@ export default function ProductTable({ products }: ProductTableProps) {
                   <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
                     Precio
                   </th>
-                  <th scope="col" className="px-3 py-3.5  text-sm font-semibold text-gray-900 ">
+                  <th scope="col" className="px-3 py-3.5 text-sm font-semibold text-gray-900">
+                    Disponible
+                  </th>
+                  <th scope="col" className="px-3 py-3.5 text-sm font-semibold text-gray-900 ">
                     Categoría
                   </th>
-                  <th scope="col" className="px-3 py-3.5 text-center text-sm font-semibold text-gray-900 relative pl-3 pr-4 sm:pr-0">
+                  <th scope="col" className="px-3 py-3.5 text-sm font-semibold text-gray-900 relative pl-3 pr-4 sm:pr-0">
                     Acciones
                     <span className="sr-only">Acciones</span>
                   </th>
@@ -38,13 +55,19 @@ export default function ProductTable({ products }: ProductTableProps) {
               <tbody className="divide-y divide-gray-200">
                 {products.map((product) => (
                   <tr key={product.id}>
-                    <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-0">
+                    <td className="py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-0">
                       {product.name}
                     </td>
-                    <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                    <td className="px-3 py-4 text-sm text-gray-500">
                       {formatCurrency(product.price)}
                     </td>
-                    <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500 group">
+                    <td className="flex items-center justify-center">
+                      <AvailabilityToggle product={product} hiddenTitle={true} thisHidden={true} />
+                      <div className="cursor-pointer" onClick={handleClick}>
+                        <Bulb width={40} fill={product.available ? "#facc15" : "#8a8a8a29"} />
+                      </div>
+                    </td>
+                    <td className="px-3 py-4 text-sm text-gray-500 group">
                       <Link href={`/order/${product.category.slug}`} className="py-2 rounded-md hover:underline group-hover:text-green-700 group-hover:bg-gray-200 flex w-full justify-center items-center gap-2">
                         {product.category.name}
                       </Link>
@@ -57,8 +80,7 @@ export default function ProductTable({ products }: ProductTableProps) {
                         <Icon icon="iconoir:page-edit" width="30" height="30" />
                         <span className="sr-only">, {product.name}</span></Link>
                       <DeleteProductButton key={product.id}
-                        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-                        product={product as any} />
+                        product={product} />
                     </td>
                   </tr>
                 ))}
@@ -67,6 +89,6 @@ export default function ProductTable({ products }: ProductTableProps) {
           </div>
         </div>
       </div>
-    </div>
+    </div >
   )
 }
