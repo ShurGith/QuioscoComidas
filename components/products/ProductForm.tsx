@@ -44,16 +44,7 @@ export default async function ProductForm({ product }: ProducFormProps) {
           />
         </div>
       </div>
-      <div className="space-y-2">
-        <label className="text-slate-800" htmlFor="available">Disponible:</label>
-        <input
-          id="available"
-          type="checkbox" // O un input hidden con value="true" si quieres que siempre se envíe
-          name="available"
-          className="ml-2"
-          defaultChecked={product?.available} // Usa defaultChecked para checkboxes
-        />
-      </div>
+
       {product && (<AvailabilityToggle product={product} />)}
 
       <div className="space-y-2">
