@@ -25,7 +25,7 @@ export default function ProductSearchForm() {
   return (
     <form
       action={handleSearchForm}
-      className="flex items-center justify-center gap-2 w-full">
+      className="flex items-center justify-center gap-2">
       <input type="text" placeholder="Buscar producto..."
         className="p-2 placeholder-gray-400 w-full bg-white border border-gray-300 rounded-md focus:border-indigo-500 outline-none focus:ring-1 ring-indigo-500"
         name="search"
