@@ -18,7 +18,7 @@
     "@prisma/extension-accelerate": "^2.0.2",
     "@vercel/speed-insights": "^1.2.0",
     "colors": "^1.4.0",
-    "next": "^15.5.1-canary.28",
+    "next": "15",
     "next-cloudinary": "^6.16.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",

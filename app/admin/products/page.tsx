@@ -29,12 +29,9 @@ async function getProducts(page: number, pageSize: number, available?: Availabil
 export type ProductsCount = Awaited<ReturnType<typeof productsCount>>;
 export type ProductsWithCategory = Awaited<ReturnType<typeof getProducts>>
 
-export default async function ProductsPage({
-  searchParams,
-}: { // Definimos el tipo directamente aquí
+export default async function ProductsPage({ searchParams, }: {
   searchParams?: {
-    page?: string;
-    available?: AvailabilityStatus;
+    page?: string; available?: AvailabilityStatus;
   };
 }) {
   const pageParam = searchParams?.page;
