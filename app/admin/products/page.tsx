@@ -8,7 +8,12 @@ import { prisma } from "@/src/lib/prisma";
 import { redirect } from "next/navigation";
 
 type AvailabilityStatus = 'true' | 'false' | 'all';
-
+interface ProductsPageProps {
+  searchParams?: {
+    page?: string;
+    available?: AvailabilityStatus;
+  };
+}
 async function productsCount(available?: AvailabilityStatus) {
   const where = available && available !== 'all' ? { available: available === 'true' } : {};
   return await prisma.product.count({ where });
@@ -30,13 +35,11 @@ async function getProducts(page: number, pageSize: number, available?: Availabil
 export type ProductsCount = Awaited<ReturnType<typeof productsCount>>;
 export type ProductsWithCategory = Awaited<ReturnType<typeof getProducts>>
 
-export default async function ProductsPage({ searchParams }: {
-  searchParams: { page?: string, available?: AvailabilityStatus }
-}) {
-  const page = Number(searchParams.page) || 1;
-  const available = searchParams.available;
+export default async function ProductsPage({ searchParams }: ProductsPageProps) {
+  const page = Number(searchParams?.page ?? "1");
+  const available = searchParams?.available ?? "all";
 
-  if (page < 1) redirect('/admin/products');
+  if (+page < 1) redirect('/admin/products');
 
   const pageSize = Number(process.env.PAGE_SIZE) || 25;
   const productosPromise = getProducts(page, pageSize, available);
