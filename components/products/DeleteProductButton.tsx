@@ -3,15 +3,18 @@
 
 import { DeleteProductAction } from "@/actions/delete-product-action";
 import { ConfirmationModal } from '@/components/ui/ConfirmationModal';
-import { ProductToDelete } from "@/src/types";
+
 import { Icon } from '@iconify/react';
+import { Product } from "@prisma/client";
 import { useState } from 'react';
 import { toast } from "react-toastify";
 
-type DeleteProductButtonProps = {
-  product: ProductToDelete;
-}
-export default function DeleteProductButton({ product }: DeleteProductButtonProps) {
+
+type DeleteProductProps = {
+  product: Product;
+};
+
+export default function DeleteProductButton({ product }: DeleteProductProps) {
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [productIdToDelete, setProductIdToDelete] = useState<number | null>(null);

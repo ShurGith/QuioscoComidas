@@ -1,5 +1,5 @@
 import { getImagePath } from '@/src/lib/utils';
-import { ProductToDelete } from '@/src/types';
+import { Product } from '@prisma/client';
 import Image from 'next/image';
 import React, { useEffect, useState } from 'react';
 
@@ -7,7 +7,7 @@ interface ConfirmationModalProps {
   isOpen: boolean;
   onClose: () => void;
   onConfirm: () => void;
-  product: ProductToDelete
+  product: Product
 }
 
 export const ConfirmationModal: React.FC<ConfirmationModalProps> = ({

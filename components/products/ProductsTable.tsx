@@ -80,7 +80,7 @@ export default function ProductTable({ products }: ProductTableProps) {
                       <Link href={`/admin/products/${product.id}/edit`} className="text-indigo-600 hover:text-indigo-900">
                         <Icon icon="iconoir:page-edit" width="30" height="30" />
                         <span className="sr-only">, {product.name}</span></Link>
-                      <DeleteProductButton key={product.id}
+                      <DeleteProductButton
                         product={product} />
                     </td>
                   </tr>
