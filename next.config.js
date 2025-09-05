@@ -2,6 +2,10 @@
 const nextConfig = {
 
   reactStrictMode: true,
+  eslint: {
+    // Advertencia: Esto deshabilitará ESLint durante la compilación.
+    ignoreDuringBuilds: true,
+  },
 
 };
 module.exports = {

@@ -81,6 +81,7 @@ export default async function ProductForm({ product }: ProducFormProps) {
         <div className="flex flex-col items-start pl-6 space-y-2">
           <h5 className="text-slate-500 font-bold">Disponible</h5>
           {product && (<AvailabilityToggle product={product} />)}
+
         </div>
 
       </div >
