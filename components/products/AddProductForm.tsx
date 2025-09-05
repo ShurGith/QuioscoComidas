@@ -11,9 +11,11 @@ export default function AddProductForm({ children }: { children: React.ReactNode
   const handleSubmit = async (formData: FormData) => {
     const data = {
       name: formData.get("name"),
+      description: formData.get("description"),
       price: formData.get("price"),
       categoryId: formData.get("categoryId"),
-      image: formData.get("image")
+      image: formData.get("image"),
+      available: formData.get("available") === 'on' ? true : false,
     }
     const result = ProductSchema.safeParse(data)
     if (!result.success) {

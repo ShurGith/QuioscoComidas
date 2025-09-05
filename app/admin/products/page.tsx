@@ -1,4 +1,3 @@
-"use client"
 import LinkAmber from "@/components/LinkAmber";
 import AvailabilityFilter from "@/components/products/AvailabilityFilter";
 import ProductSearchForm from "@/components/products/ProductSearchForm";
@@ -6,14 +5,21 @@ import ProductsPaginator from "@/components/products/ProductsPaginator";
 import ProductTable from "@/components/products/ProductsTable";
 import Heading from "@/components/ui/Heading";
 import { prisma } from "@/src/lib/prisma";
-import { redirect, useSearchParams } from "next/navigation";
-//type AvailabilityStatus = 'true' | 'false' | 'all';
+import { redirect } from "next/navigation";
 
-async function productsCount(available: string) {
+type AvailabilityStatus = 'true' | 'false' | 'all';
+
+interface ProductsPageProps {
+  searchParams: Promise<{
+    page: number,
+    available: AvailabilityStatus
+  }>
+}
+async function productsCount(available?: AvailabilityStatus) {
   const where = available && available !== 'all' ? { available: available === 'true' } : {};
   return await prisma.product.count({ where });
 }
-async function getProducts(page: number, pageSize: number, available?: string) {
+async function getProducts(page: number, pageSize: number, available?: AvailabilityStatus) {
   const skip = (page - 1) * pageSize;
   const where = available && available !== 'all' ? { available: available === 'true' } : {};
 
@@ -30,25 +36,21 @@ async function getProducts(page: number, pageSize: number, available?: string) {
 export type ProductsCount = Awaited<ReturnType<typeof productsCount>>;
 export type ProductsWithCategory = Awaited<ReturnType<typeof getProducts>>
 
-export default function ProductsPage() {
-  const searchParams = useSearchParams();
-  //console.log(params); 
-  const search = searchParams.get('pagine')
-  console.log(search);
-  return
-  const page = pagine ?? 1
-  console.log('page', page);
-  if (page < 1) redirect('/admin/products');
+export default async function ProductsPage({ searchParams, }: ProductsPageProps) {
+  const { page, available } = await searchParams
+
+  const pageCheck = Number(page ?? "1");
+
+  console.log("🚀 ~ file: page.tsx:70 ~ ProductsPage ~ page:", pageCheck);
+  if (pageCheck < 1) redirect('/admin/products');
 
   const pageSize = Number(process.env.PAGE_SIZE) || 25;
-  const productosPromise = getProducts(page, pageSize, available);
+  const productosPromise = getProducts(pageCheck, pageSize, available);
   const totalProductsPromise = productsCount(available);
-  const [products, cuentaProductos] = [
+  const [products, cuentaProductos] = await Promise.all([
     productosPromise,
     totalProductsPromise,
-  ]
-
-  return
+  ]);
 
   const totalPages = Math.ceil(cuentaProductos / pageSize);
 

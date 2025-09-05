@@ -24,7 +24,7 @@ export default function ProductsPaginator({ page, totalPages }: ProductsPaginato
       {page > 1 && (
         <Link
           className={`${claseLinks} bg-white`}
-          href={`${pathname}?pagin=${page - 1}${searchParam}`}
+          href={`${pathname}?page=${page - 1}${searchParam}`}
         >&laquo;</Link>
       )}
 
@@ -41,7 +41,7 @@ export default function ProductsPaginator({ page, totalPages }: ProductsPaginato
           <Link
             key={p}
             className={`${claseLinks} ${page === p ? 'pointer-events-none bg-indigo-600 text-white' : 'bg-white'}`}
-            href={`${pathname}?pagine=${p}${searchParam}`}
+            href={`${pathname}?page=${p}${searchParam}`}
           >
             {p}
           </Link>
@@ -51,7 +51,7 @@ export default function ProductsPaginator({ page, totalPages }: ProductsPaginato
       {page < totalPages && (
         <Link
           className={`${claseLinks} bg-white`}
-          href={`${pathname}?pagine=${page + 1}${searchParam}`}
+          href={`${pathname}?page=${page + 1}${searchParam}`}
         >&raquo;</Link>
       )}
     </nav>

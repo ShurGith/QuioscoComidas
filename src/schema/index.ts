@@ -26,9 +26,7 @@ export const ProductSchema = z.object({
     .min(1, { message: 'El Nombre del Producto no puede ir vacio' }),
   description: z.string()
     .trim()
-    .nullable()
-    .optional()
-    .transform(value => (value === "" ? null : value)),
+    .min(1, { message: 'La descripción del Producto no puede ir vacia' }),
   available: z.union([z.literal(true), z.literal(false), z.literal("true"), z.literal("false"), z.literal("on"), z.null(), z.undefined()])
     .transform((value) => {
       if (value === true || value === "true" || value === "on") return true;

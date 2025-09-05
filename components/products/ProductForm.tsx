@@ -1,5 +1,6 @@
 
 import AvailabilityToggle from "@/components/products/AvailabilityToggle";
+import AvailabilityToggleNew from "@/components/products/AvailabilityToggleNew";
 import ImageUpload from "@/components/products/ImageUpload";
 import { prisma } from "@/src/lib/prisma";
 //import { ProductCardComplete } from "@/src/types";
@@ -39,8 +40,9 @@ export default async function ProductForm({ product }: ProducFormProps) {
             id="description"
             name="description"
             rows={8}
+            placeholder="Descripción del producto"
             className="bg-slate-100 block w-full rounded-md px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6 dark:bg-white/5 dark:text-white dark:outline-white/10 dark:placeholder:text-gray-500 dark:focus:outline-indigo-500"
-            defaultValue={product?.description ?? ''}
+            defaultValue={product?.description || ''}
           />
         </div>
       </div>
@@ -81,6 +83,7 @@ export default async function ProductForm({ product }: ProducFormProps) {
         <div className="flex flex-col items-start pl-6 space-y-2">
           <h5 className="text-slate-500 font-bold">Disponible</h5>
           {product && (<AvailabilityToggle product={product} />)}
+          {!product && (<AvailabilityToggleNew />)}
 
         </div>
 

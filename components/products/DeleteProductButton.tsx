@@ -57,18 +57,16 @@ export default function DeleteProductButton({ product }: DeleteProductProps) {
         type="button"
         aria-label={`Eliminar producto ${product.name}`}
         onClick={() => openDeleteModal(product.id, product.name)}
-        className="text-red-600 hover:text-red-400 cursor-pointer p-2 rounded-full hover:bg-red-50 transition-colors"
+        className="text-red-600 hover:text-red-800 cursor-pointer p-2 rounded-full hover:bg-red-200 transition-colors"
       >
         <Icon icon="ei:trash" width="28" height="28" />
         <span className="sr-only">, {product.name}</span>
       </button>
 
-      {/* Renderiza el modal */}
       <ConfirmationModal
         isOpen={isModalOpen}
         onClose={closeDeleteModal}
         onConfirm={handleConfirmDelete}
-        //    message={product.name}
         product={product}
       />
     </>

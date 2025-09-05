@@ -6,18 +6,17 @@ import Heading from "@/components/ui/Heading";
 import { prisma } from "@/src/lib/prisma";
 import { redirect } from "next/navigation";
 
-// Se define el número de productos por página. 
 const pageSize = Number(process.env.PAGE_SIZE) || 20;
-// Es buena práctica tenerlo en un solo lugar.
+interface SearchPageProps {
+  searchParams: Promise<{
+    page: number,
+    search: string,
+  }>
+}
 
-export default async function SearchPage({
-  searchParams
-}: {
-  searchParams: { search?: string; page?: string }
-}) {
-
-  const page = parseInt(searchParams.page ?? '1');
-  const searchTerm = searchParams.search;
+export default async function SearchPage({ searchParams }: SearchPageProps) {
+  const { page, search } = await searchParams
+  const searchTerm = search;
 
   if (!searchTerm) {
     redirect('/admin/products');
