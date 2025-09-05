@@ -25,7 +25,7 @@ export default async function EditProductsPage({ params }: { params: Promise<{ i
   const product = await getProductById(+(await params).id)
   return (
     <>
-      <Heading>Editar el producto {product.name} </Heading>
+      <Heading>Editar el producto <span className="font-black underlinte">{product?.name}</span> </Heading>
       <GoBackButton />
       <EditProductForm>
         <ProductForm product={product} />

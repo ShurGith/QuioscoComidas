@@ -8,6 +8,7 @@ async function getProducts(category: string) {
       category: {
         slug: category
       },
+      available: true,
     }
   })
   return products

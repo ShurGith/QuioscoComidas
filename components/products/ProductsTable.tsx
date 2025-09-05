@@ -61,10 +61,11 @@ export default function ProductTable({ products }: ProductTableProps) {
                     <td className="px-3 py-4 text-sm text-gray-500">
                       {formatCurrency(product.price)}
                     </td>
-                    <td className="flex items-center justify-center">
-                      <AvailabilityToggle product={product} hiddenTitle={true} thisHidden={true} />
+                    <td className="flex items-center justify-center relative">
+
+                      <AvailabilityToggle product={product} thisHidden={true} />
                       <div className="cursor-pointer" onClick={handleClick}>
-                        <Bulb width={40} fill={product.available ? "#facc15" : "#8a8a8a29"} />
+                        <Bulb width={40} fill={product.available ? "#ffe064" : "#8a8a8a29"} />
                       </div>
                     </td>
                     <td className="px-3 py-4 text-sm text-gray-500 group">

@@ -64,12 +64,10 @@ export default async function ProductsPage({ searchParams }: {
         <AvailabilityFilter />
       </div>
       <ProductTable
-        products={products}
-      />
+        products={products} />
       <ProductsPaginator
         page={page}
-        totalPages={totalPages}
-      />
+        totalPages={totalPages} />
     </>
   )
 }
