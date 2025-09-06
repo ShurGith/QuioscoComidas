@@ -41,7 +41,7 @@ export default async function ProductsPage({ searchParams, }: ProductsPageProps)
 
   const pageCheck = Number(page ?? "1");
 
-  console.log("🚀 ~ file: page.tsx:70 ~ ProductsPage ~ page:", pageCheck);
+  //  console.log("🚀 ~ file: page.tsx:70 ~ ProductsPage ~ page:", pageCheck);
   if (pageCheck < 1) redirect('/admin/products');
 
   const pageSize = Number(process.env.PAGE_SIZE) || 25;
@@ -75,7 +75,7 @@ export default async function ProductsPage({ searchParams, }: ProductsPageProps)
       <ProductTable
         products={products} />
       <ProductsPaginator
-        page={page}
+        page={+page}
         totalPages={totalPages} />
     </>
   )

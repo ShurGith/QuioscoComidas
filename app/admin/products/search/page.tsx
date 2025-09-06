@@ -17,6 +17,7 @@ interface SearchPageProps {
 export default async function SearchPage({ searchParams }: SearchPageProps) {
   const { page, search } = await searchParams
   const searchTerm = search;
+  const pageCheck = page ?? 1;
 
   if (!searchTerm) {
     redirect('/admin/products');
@@ -38,7 +39,7 @@ export default async function SearchPage({ searchParams }: SearchPageProps) {
       }
     },
     take: pageSize,
-    skip: (page - 1) * pageSize, // Saltarse las páginas anteriores
+    skip: (pageCheck - 1) * pageSize, // Saltarse las páginas anteriores
     include: {
       category: true
     },
@@ -47,7 +48,7 @@ export default async function SearchPage({ searchParams }: SearchPageProps) {
     }
   });
   const totalPages = Math.ceil(totalProducts / pageSize);
-  if (page < 1 || (page > totalPages && totalProducts > 0)) {
+  if (pageCheck < 1 || (pageCheck > totalPages && totalProducts > 0)) {
     redirect(`/admin/products/search?search=${searchTerm}`);
   }
 
